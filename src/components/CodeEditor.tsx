@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Loader, Code } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import Editor from '@monaco-editor/react';
 
 interface CodeEditorProps {
@@ -23,6 +24,8 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
   onSubmit,
   isSubmitting
 }) => {
+  const { theme } = useTheme();
+
   const languages = [
     { value: 'javascript', label: 'JavaScript' },
     { value: 'python', label: 'Python' },
@@ -80,7 +83,7 @@ public:
   }, [selectedLanguage]);
 
   return (
-    <Card className="h-full border-0 shadow-lg bg-white flex flex-col">
+    <Card className="h-full border-0 shadow-lg bg-card flex flex-col">
       <CardHeader className="pb-4 flex-shrink-0">
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center space-x-2">
@@ -104,13 +107,13 @@ public:
       </CardHeader>
       
       <CardContent className="flex-1 flex flex-col p-0">
-        <div className="flex-1 border rounded-lg mx-6 mb-4 overflow-hidden">
+        <div className="flex-1 border border-border rounded-lg mx-6 mb-4 overflow-hidden">
           <Editor
             height="100%"
             language={selectedLanguage}
             value={code}
             onChange={(value) => onCodeChange(value || '')}
-            theme="vs"
+            theme={theme === 'dark' ? 'vs-dark' : 'vs'}
             options={{
               minimap: { enabled: false },
               scrollBeyondLastLine: false,

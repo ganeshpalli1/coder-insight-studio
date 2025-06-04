@@ -29,18 +29,18 @@ export const ChallengePanel = () => {
   };
 
   return (
-    <Card className="h-full border-0 shadow-lg bg-white">
+    <Card className="h-full border-0 shadow-lg bg-card">
       <CardHeader className="pb-4">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg font-semibold text-gray-900">
+          <CardTitle className="text-lg font-semibold text-card-foreground">
             {challenge.title}
           </CardTitle>
           <Badge 
             variant="secondary"
             className={`${
-              challenge.difficulty === 'Easy' ? 'bg-green-100 text-green-800' :
-              challenge.difficulty === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
-              'bg-red-100 text-red-800'
+              challenge.difficulty === 'Easy' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
+              challenge.difficulty === 'Medium' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
+              'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
             }`}
           >
             {challenge.difficulty}
@@ -50,32 +50,32 @@ export const ChallengePanel = () => {
       
       <CardContent className="space-y-6 overflow-y-auto">
         <div>
-          <h3 className="font-medium text-gray-900 mb-2">Problem Description</h3>
-          <p className="text-gray-700 leading-relaxed">
+          <h3 className="font-medium text-card-foreground mb-2">Problem Description</h3>
+          <p className="text-muted-foreground leading-relaxed">
             {challenge.description}
           </p>
         </div>
 
         <div>
-          <h3 className="font-medium text-gray-900 mb-3">Examples</h3>
+          <h3 className="font-medium text-card-foreground mb-3">Examples</h3>
           {challenge.examples.map((example, index) => (
-            <div key={index} className="bg-gray-50 rounded-lg p-4 mb-3 border">
+            <div key={index} className="bg-muted rounded-lg p-4 mb-3 border border-border">
               <div className="text-sm">
                 <div className="mb-2">
-                  <span className="font-medium text-gray-700">Input:</span>
-                  <code className="ml-2 text-blue-600 font-mono text-sm">
+                  <span className="font-medium text-card-foreground">Input:</span>
+                  <code className="ml-2 text-blue-600 dark:text-blue-400 font-mono text-sm">
                     {example.input}
                   </code>
                 </div>
                 <div className="mb-2">
-                  <span className="font-medium text-gray-700">Output:</span>
-                  <code className="ml-2 text-green-600 font-mono text-sm">
+                  <span className="font-medium text-card-foreground">Output:</span>
+                  <code className="ml-2 text-green-600 dark:text-green-400 font-mono text-sm">
                     {example.output}
                   </code>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-700">Explanation:</span>
-                  <span className="ml-2 text-gray-600">
+                  <span className="font-medium text-card-foreground">Explanation:</span>
+                  <span className="ml-2 text-muted-foreground">
                     {example.explanation}
                   </span>
                 </div>
@@ -85,12 +85,12 @@ export const ChallengePanel = () => {
         </div>
 
         <div>
-          <h3 className="font-medium text-gray-900 mb-2">Constraints</h3>
+          <h3 className="font-medium text-card-foreground mb-2">Constraints</h3>
           <ul className="space-y-1">
             {challenge.constraints.map((constraint, index) => (
-              <li key={index} className="text-sm text-gray-600 flex items-start">
-                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                <code className="font-mono text-xs bg-gray-100 px-1 py-0.5 rounded">
+              <li key={index} className="text-sm text-muted-foreground flex items-start">
+                <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                <code className="font-mono text-xs bg-muted px-1 py-0.5 rounded">
                   {constraint}
                 </code>
               </li>
